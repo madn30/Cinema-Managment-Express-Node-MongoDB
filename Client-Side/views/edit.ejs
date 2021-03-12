@@ -1,0 +1,94 @@
+<html>
+<script>
+    var permissionJsondata = '<%- JSON.stringify(permissionJsondata) %>'
+    var JSONObject = JSON.parse(permissionJsondata);
+    var c = JSONObject["Subscriptions"];
+    window.onload = function () {
+        var checkboxes = document.getElementsByName('Subscriptions');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            for (var j = 0; j < c.length; j++) {
+                if (checkboxes[i].getAttribute('id') === c[j]) {
+                    checkboxes[i].checked = true
+                }
+            }
+        }
+    }
+
+    var accept = false
+    window.onchange = function () {
+        var ViewSubscriptions = document.getElementById('ViewSubscriptions');
+        var CreateSubscriptions = document.getElementById('CreateSubscriptions');
+        var DeleteSubscriptions = document.getElementById('DeleteSubscriptions');
+        var UpdateSubscriptions = document.getElementById('UpdateSubscriptions');
+
+        var ViewMovies = document.getElementById('ViewMovies');
+        var CreateMovies = document.getElementById('CreateMovies');
+        var DeleteMovies = document.getElementById('DeleteMovies');
+        var UpdateMovies = document.getElementById('UpdateMovies');
+
+        if (CreateSubscriptions.checked || UpdateSubscriptions.checked || DeleteSubscriptions.checked) {
+            if (!ViewSubscriptions.checked) {
+                ViewSubscriptions.checked = true
+                console.log("ViewSubscriptionss cheacked");
+            }
+
+        }
+        if (UpdateMovies.checked || CreateMovies.checked || DeleteMovies.checked) {
+            if (!ViewMovies.checked) {
+                ViewMovies.checked = true
+
+                console.log("ViewMovies cheacked");
+            }
+        }
+
+
+    }
+</script>
+
+<body>
+    <form action="/AddUser/Edit" method="POST">
+        <fieldset>
+            <legend>Edit User <%=userJsondata.FirstName%>
+                    <%=userJsondata.LastName%>
+            </legend>
+            <input type="hidden"  name="id" value="<%=userJsondata.id%>">
+            <label>First name:</label><br>
+            <input type="text" name="FirstName" value="<%=userJsondata.FirstName%>"><br>
+            <label>LastName:</label><br>
+            <input type="text" name="LastName" value="<%=userJsondata.LastName%>"> <br>
+            <label>UserName:</label><br>
+            <input type="text" name="UserName" value="<%=UserDBdata.UserName%>"> <br>
+            <label>SessionTimeOut:</label><br>
+            <input type="text" name="SessionTimeOut" value="<%=userJsondata.SessionTimeOut%>"><br><br>
+            <label>Create Data: <%=userJsondata.CreatedDate%></label>
+            <input type="hidden"  name="CreatedDate" value="<%=userJsondata.CreatedDate%>">
+
+            <br>
+        </fieldset><br><br>
+        <fieldset>
+            <legend>Permissions</legend>
+            <input type="checkbox" id="ViewSubscriptions" name="Subscriptions"
+                value="ViewSubscriptions">ViewSubscriptions<br>
+            <input type="checkbox" id="CreateSubscriptions" name="Subscriptions"
+                value="CreateSubscriptions">CreateSubscriptions<br>
+            <input type="checkbox" id="DeleteSubscriptions" name="Subscriptions"
+                value="DeleteSubscriptions">DeleteSubscriptions<br>
+            <input type="checkbox" id="UpdateSubscriptions" name="Subscriptions"
+                value="UpdateSubscriptions">UpdateSubscriptions<br><br>
+
+            <input type="checkbox" id="ViewMovies" name="Subscriptions" value="ViewMovies">ViewMovies<br>
+            <input type="checkbox" id="CreateMovies" name="Subscriptions" value="CreateMovies">CreateMovies<br>
+            <input type="checkbox" id="DeleteMovies" name="Subscriptions" value="DeleteMovies">DeleteMovies<br>
+            <input type="checkbox" id="UpdateMovies" name="Subscriptions" value="UpdateMovies">UpdateMovies<br>
+
+        </fieldset> <br>
+
+        <input type="submit" value="save">
+        <input type="button" value="cancel" name="cancel" onclick="cancelbutton()">
+
+
+
+    </form>
+</body>
+
+</html>

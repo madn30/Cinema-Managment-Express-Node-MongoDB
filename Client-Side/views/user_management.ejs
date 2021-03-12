@@ -1,0 +1,41 @@
+<html>
+<script>
+    function test() {
+
+    }
+    window.onload = function () {
+        document.getElementById('btn').click();
+
+        var AddUser = document.getElementById('AddUser');
+        AddUser.onclick = function () {
+            console.log("add user");
+            location.assign('/AddUser');
+
+        }
+
+    }
+</script>
+
+<body>
+    hello <%=username%>
+
+    <h1>Users</h1>
+    <button style="margin-right: 10px;margin-bottom: 10px;" id="btn">All Users </button>
+    <button id="AddUser">Add Users</button>
+    <%DBandJSONdata.forEach(user=>{%>
+        <fieldset style="width: 30%;">
+            <legend>Enter New User</legend>
+            Name : <%=user.Name%> <br>
+                UserName : <%=user.UserName%><br>
+                    SessionTimeOut : <%=user.SessionTimeOut%><br>
+                        Createddata : <%=user.Createddata%><br>
+                            Permissions : <%=user.Permissions%><br>
+                                <button onclick="window.location.href='/AddUser/edit/<%=user.id%>';">Edit</button>
+                                <button onclick="window.location.href='/AddUser/delete/<%=user.id%>';">Delete</button>
+        </fieldset><br><br>
+        <%})%>
+
+
+</body>
+
+</html>

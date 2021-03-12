@@ -1,0 +1,18 @@
+<html>
+<h2>Members</h2>
+<h3>EditMember:<%=data.Name%>
+</h3>
+<form action="/Members/EditMember" method="POST">
+    <input type="hidden" name="id" value="<%=data._id%>">
+    <label>Name:</label><br>
+    <input type="text" name="Name" value="<%=data.Name%>"><br>
+    <label>Email:</label><br>
+    <input type="text" name="Email" value="<%=data.Email%>"><br><br>
+    <label>City:</label><br>
+    <input type="text" name="City" value="<%=data.City%>"><br><br>
+
+    <input type="submit" value="Create">
+    <input type="button" value="cancel" onclick="window.location.href='/Subscription';">
+</form>
+
+</html>

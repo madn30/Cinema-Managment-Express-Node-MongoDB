@@ -1,0 +1,41 @@
+<html>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<body style="display: flex; align-items: center;justify-content: center;">
+    <form action="/Movies/addmovie" method="POST">
+        <table style="width:100%; border-spacing: 5px;">
+            <tr>
+                <th> Name: </th>
+                <th> Genres:</th>
+                <th> imageurl:</th>
+                <th>Premired:</th>
+            </tr>
+            <tr>
+                <td><input name="Name" type="text"><br></td>
+                <td><input name="Genres" type="text"></td>
+                <td> <input name="Image" type="text"></td>
+                <td><input type="date" name="Premiered"></td>
+            </tr>
+
+        </table>
+        <div style="margin-left: 50%;margin-top: 5%;">
+            <button type="submit">Add</button>
+            <button onclick="window.location.href='/Movies/';">cancel</button>
+        </div>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<html>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<body style="display: flex; align-items: center;justify-content: center;">
+    <form action="/Movies/editmovie" method="POST">
+        <input type="hidden" name="id" value="<%=data._id%>">
+        <table style="width:100%; border-spacing: 5px;">
+            <h3>Edit Movie:<%=data.Name%>
+            </h3>
+            <tr>
+                <th> Name: </th>
+                <th> Genres:</th>
+                <th> imageurl:</th>
+                <th>Premired:</th>
+            </tr>
+            <tr>
+                <th> <input name="Name" value="<%=data.Name%>" type="text"> </th>
+                <th><input name="Genres" value="<%=data.Genres%>" type="text"></th>
+                <th> <input name="Image" value="<%=data.Image%>" type="text"></th>
+                <th><input type="date" name="Premiered" value="<%=moment(data.Premiered).format('YYYY-MM-DD')%>"></th>
+            </tr>
+
+
+            </table>
+            
+            <div style="margin-left: 50%;margin-top: 5%;">
+                <button type="submit">update</button>
+                <button onclick="window.location.href='/Movies/';">cancel</button>
+            </div>
+    </form>
+</body>
+
+</html>

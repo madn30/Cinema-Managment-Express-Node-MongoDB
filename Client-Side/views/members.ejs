@@ -1,0 +1,123 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<SCRIPT>
+
+    function ShowAndHide(index) {
+        var selectform = document.forms[index]
+
+        if (selectform.style.display == 'none') {
+
+            selectform.style.display = 'inline-block';
+        }
+
+        else {
+            selectform.style.display = 'none';
+
+        }
+
+
+    }
+</SCRIPT>
+<script>
+
+    function deletemember(id) {
+
+        axios({
+            method: 'delete',
+            url: 'http://localhost:8000/api/Member/' + id,
+
+        });
+
+
+        "<%SubsInMovie.forEach(e=>{%>"
+        if ("<%-e.MemberId%>" === id) {
+            axios({
+                method: 'delete',
+                url: 'http://localhost:8000/api/Subscription/' + "<%-e.SubscriptionId%>",
+
+            });
+
+        }
+        "<%})%>"
+        window.location.reload()
+    }
+
+
+
+
+</script>
+
+<body>
+    <%if(Persmissions.includes('ViewSubscriptions')){%>
+        hello <%=username%>
+
+            <h3>Subscription</h3><br>
+            <button>All Members</button>
+            <%if(Persmissions.includes('CreateSubscriptions')){%>
+
+                <button onclick="window.location.href='/Members/AddMember';">Add
+                    Members</button>
+                <%}%><br>
+
+                    <%MemberData.forEach(function(mem,index){%>
+
+                        <div>
+                            <fieldset style="width: 40%;">
+                                <legend>
+                                    <%=mem.Name%>
+                                </legend>
+                                Email: <%=mem.Email%><br>
+                                    City:<%=mem.City%><br>
+                                        <%if(Persmissions.includes('UpdateSubscriptions')){%>
+                                            <button
+                                                onclick="window.location.href='/Members/EditSubscription/<%=mem._id%>';">Edit</button>
+                                            <%}%>
+                                                <%if(Persmissions.includes('DeleteSubscriptions')){%>
+                                                    <button onclick="deletemember('<%=mem._id%>')">Delete</button>
+                                                    <%}%>
+                                                        <h3>Movies Watched</h3>
+                                                        <div>
+                                                            <button onclick="ShowAndHide('<%-index%>')">Subscribe to New
+                                                                Movie</button><br>
+                                                            <div style="display:inline-block">
+                                                                <%SubsInMovie.forEach(e=>{%>
+                                                                    <%if(e.MemberId==mem._id){%>
+                                                                        <a href="/Movies/Movie/<%=e.MovieId%>">
+                                                                            <%=e.MovieName%>
+                                                                        </a> ,
+                                                                        <%=moment(e.SubscriptionTime).format("YYYY-MM-DD")%>
+                                                                            <br>
+                                                                            <%}%>
+                                                                                <%})%>
+                                                            </div>
+                                                            <div>
+                                                                <form name="allformm" id="allform" style="display:none"
+                                                                    action="/Members/GetTheMovieSub" method="POST">
+                                                                    <input type="hidden" name="idmember"
+                                                                        value="<%=mem._id%>">
+
+                                                                    <label>Choose a movie:</label>
+                                                                    <select name="Movie">
+                                                                        <%MoviesData.forEach(movie=>{%>
+                                                                            <option value="<%=movie.id%>">
+                                                                                <%=movie.Name%>
+                                                                            </option>
+
+                                                                            <%})%><br>
+                                                                                date: <input type="date"
+                                                                                    name="date"><br>
+                                                                    </select><br>
+                                                                    <button type="submit">Add</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                            </fieldset>
+                        </div>
+                        <%})%>
+                            <%}else{%>
+                                <h1>Not Right Permission</h1>
+                                <%}%>
+</body>
+
+</html>

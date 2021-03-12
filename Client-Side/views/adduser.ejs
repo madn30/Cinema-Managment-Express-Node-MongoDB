@@ -1,0 +1,82 @@
+<html>
+<script>
+    var accept = false
+    window.onchange = function () {
+        var ViewSubscriptions = document.getElementById('ViewSubscriptions');
+        var CreateSubscriptions = document.getElementById('CreateSubscriptions');
+        var DeleteSubscriptions = document.getElementById('DeleteSubscriptions');
+        var UpdateSubscriptions = document.getElementById('UpdateSubscriptions');
+
+        var ViewMovies = document.getElementById('ViewMovies');
+        var CreateMovies = document.getElementById('CreateMovies');
+        var DeleteMovies = document.getElementById('DeleteMovies');
+        var UpdateMovies = document.getElementById('UpdateMovies');
+
+        if (CreateSubscriptions.checked ||UpdateSubscriptions.checked ||  DeleteSubscriptions.checked) {
+            if (!ViewSubscriptions.checked) {
+                ViewSubscriptions.checked=true
+                console.log("ViewSubscriptionss cheacked");
+            }
+           
+        }
+        if (UpdateMovies.checked || CreateMovies.checked || DeleteMovies.cheacked) {
+            if (!ViewMovies.checked) {
+                ViewMovies.checked=true
+
+                console.log("ViewMovies cheacked");
+            }
+        }
+
+
+    }
+</script>
+<script>
+    function cancelbutton(){
+        location.assign('/User_Managment');
+
+    }
+</script>
+<body>
+    <h1>
+        Add New User
+    </h1>
+    <form action="/AddUser/Info" method="POST">
+        <fieldset>
+            <legend>Enter New User</legend>
+
+            <label>First name:</label><br>
+            <input type="text" name="FirstName"><br>
+            <label>LastName:</label><br>
+            <input type="text" name="LastName"> <br>
+            <label>UserName:</label><br>
+            <input type="text" name="UserName"> <br>
+            <label>SessionTimeOut:</label><br>
+            <input type="text" name="SessionTimeOut"><br>
+        </fieldset><br><br>
+        <fieldset>
+            <legend>Permissions</legend>
+            <input type="checkbox" id="ViewSubscriptions" name="Subscriptions"
+                value="ViewSubscriptions">ViewSubscriptions<br>
+            <input type="checkbox" id="CreateSubscriptions" name="Subscriptions"
+                value="CreateSubscriptions">CreateSubscriptions<br>
+            <input type="checkbox" id="DeleteSubscriptions" name="Subscriptions"
+                value="DeleteSubscriptions">DeleteSubscriptions<br>
+            <input type="checkbox" id="UpdateSubscriptions" name="Subscriptions"
+                value="UpdateSubscriptions">UpdateSubscriptions<br><br>
+
+            <input type="checkbox" id="ViewMovies" name="Subscriptions" value="ViewMovies">ViewMovies<br>
+            <input type="checkbox" id="CreateMovies" name="Subscriptions" value="CreateMovies">CreateMovies<br>
+            <input type="checkbox" id="DeleteMovies" name="Subscriptions" value="DeleteMovies">DeleteMovies<br>
+            <input type="checkbox" id="UpdateMovies" name="Subscriptions" value="UpdateMovies">UpdateMovies<br>
+
+        </fieldset> <br>
+
+        <input type="submit" value="save">
+        <input type="button" value="cancel" name="cancel" onclick="cancelbutton()">
+
+
+
+    </form>
+</body>
+
+</html>

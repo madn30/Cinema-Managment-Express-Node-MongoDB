@@ -1,0 +1,43 @@
+<script>
+  window.onload = function () {
+
+    var Movies = document.getElementById('Movies');
+    var Subscriptions = document.getElementById('Subscriptions');
+    var Users_Management = document.getElementById('Users Management');
+    var Logout = document.getElementById('Logout');
+
+    Movies.onclick = function () {
+      console.log("Movies");
+      location.assign('/Movies');
+    }
+    Subscriptions.onclick = function () {
+      console.log("Subscriptions");
+      location.assign('/Members');
+    }
+    Users_Management.onclick = function () {
+
+      location.assign('/User_Managment');
+    }
+    Logout.onclick = function () {
+      console.log("Logout");
+      location.assign('/Subscription');
+    }
+  };
+</script>
+<html>
+
+
+<body>
+  hello <%=username%>
+    <h1>Movies-Subscriptions Web Site</h1>
+    <button id="Movies">Movies</button>
+    <button id="Subscriptions">Subscriptions</button>
+    <%if(access=="Admin"){%>
+      <button id="Users Management">Users Management</button>
+
+      <%}%>
+        <button id="Logout">Logout</button>
+
+</body>
+
+</html>

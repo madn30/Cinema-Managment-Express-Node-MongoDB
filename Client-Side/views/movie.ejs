@@ -1,0 +1,12 @@
+<html>
+
+<body style="display: flex; flex-direction: center; justify-content: center;">
+    <div>
+        <h3>MovieName : <%=finddata.Name%></h3>
+    <img src="<%=finddata.Image%>" alt="image movie"><br>
+    Premierd : <%=moment(finddata.Premiered).format("DD-MM-YYYY")%><br>
+    Geners : <%=finddata.Genres%> 
+    </div>
+</body>
+
+</html>
