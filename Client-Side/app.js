@@ -11,10 +11,9 @@ var MainRouter = require('./routes/Main');
 var MoviesRouter = require('./routes/movies');
 var session = require('express-session')
 
-var MembersnRouter = require('./routes/Members');
+var MembersRouter = require('./routes/Members');
 var User_ManagmentRouter = require('./routes/user_managment');
 var AddUser = require('./routes/adduser');
-var sessiontimeout = require("./BL/SessionTimeOut")
 var app = express();
 
 app.use(cors())
@@ -30,11 +29,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-sessiontimeout.session()
 app.use('/', LoginRouter);
 app.use('/Main', MainRouter);
 app.use('/Movies', MoviesRouter);
-app.use('/Members', MembersnRouter);
+app.use('/Members', MembersRouter);
 app.use('/User_Managment', User_ManagmentRouter);
 app.use('/AddUser', AddUser);
 

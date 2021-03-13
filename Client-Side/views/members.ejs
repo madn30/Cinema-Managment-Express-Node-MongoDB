@@ -1,28 +1,21 @@
 <html>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<SCRIPT>
+<script>
 
     function ShowAndHide(index) {
         var selectform = document.forms[index]
-
         if (selectform.style.display == 'none') {
-
             selectform.style.display = 'inline-block';
         }
-
         else {
             selectform.style.display = 'none';
 
         }
-
-
     }
-</SCRIPT>
+</script>
 <script>
-
     function deletemember(id) {
-
         axios({
             method: 'delete',
             url: 'http://localhost:8000/api/Member/' + id,
@@ -71,7 +64,7 @@
                                     City:<%=mem.City%><br>
                                         <%if(Persmissions.includes('UpdateSubscriptions')){%>
                                             <button
-                                                onclick="window.location.href='/Members/EditSubscription/<%=mem._id%>';">Edit</button>
+                                                onclick="window.location.href='/Members/EditMember/<%=mem._id%>';">Edit</button>
                                             <%}%>
                                                 <%if(Persmissions.includes('DeleteSubscriptions')){%>
                                                     <button onclick="deletemember('<%=mem._id%>')">Delete</button>

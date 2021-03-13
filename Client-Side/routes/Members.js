@@ -26,7 +26,6 @@ router.post('/GetTheMovieSub', async function (req, res, next) {
 
 router.get('/EditMember/:id', async function (req, res, next) {
 
-
   let subscribe = await MembersDal.GetMemberById(req.params.id)
   let data = subscribe.data
   res.render("editmember", { data, username: req.session.UserName })

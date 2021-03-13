@@ -7,6 +7,8 @@ const UserBL = require("../BL/UserBL")
 const UsersDal = require("../Dal/UserDAL")
 /* GET home page. */
 router.get('/', async function (req, res, next) {
+    sess = req.session;
+
     res.render("login", {})
 });
 router.post('/', async function (req, res, next) {
@@ -18,10 +20,11 @@ router.post('/', async function (req, res, next) {
     let resp = await UserBL.AllUsersDB()
     const validation = resp.find(each => each.UserName === req.body.UserName && each.Password === req.body.Password)
     if (validation) {
-
+       
+      
         const Permission = PermissionDalJsonData.find(per => per.id == validation._id)
         const GetTheSession = UsersJsonData.find(user => user.id == validation._id)
-
+        
         sess.id = validation._id;
         sess.Session = GetTheSession.SessionTimeOut
         sess.UserName = validation.UserName;
